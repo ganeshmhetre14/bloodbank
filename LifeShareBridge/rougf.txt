@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Update Multiple Selected Records PHP Mysql and Jquery Ajax</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+  /* Global styles */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f2f2f2;
+  }
+
+  /* Styles for the search form */
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+	HEIGHT: 100%;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+  }
+
+  .form label {
+    font-weight: bold;
+  }
+
+  .form input[type="text"] {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .form button[type="submit"] {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #42b5c3fc;
+    color: white;
+    border: none;
+    border-radius: 10px;
+	transition: background-color 0.3s, transform 0.2s;
+    cursor: pointer;
+  }
+  .form button:hover {
+  background-color: #060606;
+  transform: scale(1.05);
+}
+
+  .form button a {
+    color: white;
+    text-decoration: none;
+  }
+
+  /* Responsive styles for smaller screens */
+  @media screen and (max-width: 768px) {
+    .form {
+      width: 100%;
+    }
+  }
+  
+  
+  /* CSS for the search form */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  input[type="text"] {
+    padding: 5px;
+    margin: 5px;
+  }
+
+  button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #4CAF50;
+    color: white;
+	border-radius: 10px;
+    border: none;
+    cursor: pointer;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  /* CSS for the search candidate table */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+  }
+
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  tr:hover {
+    background-color: #ddd;
+  }
+  /* Style the select element */
+select {
+  /* Add your desired styles here */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Style the option elements inside the select */
+option {
+  /* Add your desired styles here */
+  padding: 5px;
+  font-size: 16px;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Style the selected option in the dropdown */
+option:checked {
+  background-color: #b4a4eb; /* Example of a different color for selected option */
+  color: #fff; /* Example of a different text color for selected option */
+}
+
+</style>
+</head>
+<body>
+<!-- Your existing HTML code here -->
+<!-- ... -->
+</body>
+</html>
+
+</style>
+</head>
+<!-- Your existing HTML code here -->
+<!-- ... -->
+
+<body>
+<!-- Your existing HTML code here -->
+<!-- ... -->
+</style>
+</head>
+<body class="body">
+<form action="" method="POST" height="50%" width="50%" class="form">
+<h3>Search Here:</h3></br>
+<div class="lable">
+City:
+<input type="text" name="name" id="name">
+Select Blood Group:
+<select name="blood" id="blood"><br><br>
+<option value="A+">A+</option>
+<option value="B+">B+</option>
+<option value="AB+">AB+</option>
+<option value="A-">A-</option>
+<option value="B-">B-</option>
+<option value="AB-">AB-</option>
+<option value="O+">O+</option>
+<option value="O-">O-</option>
+ </select><br><br>
+<button type="submit">Search</button>
+<button><a href="companylogin.php">Back</a></button>
+</div>
+</form>
+</body>
+</html>
+
+
+<html>
+<body>
+<?php
+include("config.php");
+if($_SERVER['REQUEST_METHOD']=='POST')
+{
+	$blood=$_POST['blood'];
+	$city=$_POST['name'];
+	
+	$qry=mysql_query("Select * from new_doner where d_first_name='$city'
+	or d_blood_group='$blood' ");
+	
+?>
+	
+	<table border='1'>
+	<tr>
+	<th><input type="checkbox" name="checkall">Select all</th>
+	<th>Sr No.</th>
+	<th>Last Name</th>
+	<th>First Name</th>
+	<th>Blood Group</th>
+	<th>DOB</th>
+	<th>Last Donated</th>
+	<th>Contact</th>
+	<th>Address</th>
+	<th>Request for Blood</th>
+	
+	</tr>
+	<?php
+		while($row=mysql_fetch_array($qry))
+		{
+			?>		
+		<tr>
+		<td><input type="checkbox" name="update[]"></td>
+		
+		<td><text><?php echo "<center>".$row['d_id'];?></td>
+		
+		<td><?php echo $row['d_first_name'];?></td>
+		
+		<td><?php echo $row['d_last_name'];?></td>
+		
+		<td><?php echo $row['d_blood_group'];?></td>
+		
+		<td><?php echo $row['d_dob'];?></td>
+		
+		<td><?php echo $row['d_last_date_donate'];?></td>
+		
+		<td><?php echo $row['d_phone'];?></td>
+		
+		<td><?php echo $row['d_address'];?></td>
+		
+		<td><button><a href="update.php?edit=<?php echo $row['d_id'];?>">Message</a></button></td>
+		
+		</tr>
+		<?php
+		}
+		?>
+		</table>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				//check/Uncheck All
+				$('#checkAll').change(function(){
+					alert('checkall');
+					if($(this).is(":checked")){
+						$('input[name="update[]"]').prop('checked',true);
+					}
+					else{
+						$('input[name="update[]"]').each(function(){
+							$(this).prop('checked',false);
+						});
+					}
+				});
+				//CheckBox Click
+				$('input[name="update[]"]').click(function(){
+					var total_checkboxs=$('input[name="update[]"]').length;
+					var total_checkboxs_checked=$('input[name="update[]"].checked').length;
+					
+					if(total_checkboxs_checked == total_checkboxs){
+						$('#checkAll').prop('checked',true);
+					}
+					else{
+						$('#checkAll').prop('checked',false);
+					} 
+				});
+			});
+		</script>
+		<?php
+}
+?>	
+</body>
+</html>

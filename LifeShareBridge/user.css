@@ -1,0 +1,54 @@
+form {
+  margin: 10px;
+  padding: 10px;
+}
+
+/* Center the form on the page */
+center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Style the form header and elements */
+form {
+  background-color: #f2f2f2;
+  padding: 100px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+}
+
+h1 {
+  text-align: center;
+}
+
+h3 {
+  margin-bottom: 20px;
+}
+
+/* Style input fields and labels */
+input[type="text"],
+input[type="date"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+/* Style the submit button */
+button[type="submit"] {
+  background-color:#0838a4d4;
+  width:200px;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #39d1cad4;
+}
